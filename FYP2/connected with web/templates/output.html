@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>{{ title }}</title>
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/Chart.js/1.0.2/Chart.min.js'></script>
+</head>
+
+<body>
+<center>
+    <h1>THe Analysis of News house  {{status}}</h1>
+	</center>
+	<p>THe total no of positive news of {{status}} are:{{tweetPCount1}}</p>
+	
+	<p>THe total no of positive news of {{status}} are:{{tweetNCount1}}</p>
+	
+	<p>THe total no of positive news of {{status}} are:{{tweetCount1}}</p>
+	<h1>
+	<a href="http://127.0.0.1:5000/pie2">Result of news house :{{status2}}</a>
+		</h1> 	
+	<button onclick="http://127.0.0.1:5000/pie2">Result of news house :{{status}}</a>
+		 	<h5></h5>
+			
+			<center>
+<p>the graph is showing here  the percentage of positive and negative and neutral news in {{status}}	</p>
+<h1></h1>
+</center>
+<center>
+    <canvas id="chart" width="600" height="400"></canvas>
+    <script>
+      var pieData = [
+        {% for item, label, colors in set %}
+          {
+            value: {{item}},
+            label: "{{label}}",
+            color : "{{colors}}"
+          },
+        {% endfor %}
+      ];
+
+      // get bar chart canvas
+      var mychart = document.getElementById("chart").getContext("2d");
+      steps = 10
+      max = {{ max }}
+
+      // draw pie chart
+      new Chart(document.getElementById("chart").getContext("2d")).Pie(pieData);
+
+    </script>
+	 
+	  <h3>we analyze that {{message1}}</h3>
+</body>
+</center>
+</html>
